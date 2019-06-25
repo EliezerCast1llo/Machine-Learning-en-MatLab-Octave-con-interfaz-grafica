@@ -19,7 +19,6 @@ else
 end
 % End initialization code - DO NOT EDIT
 
-
 % --- Executes just before anomalydetection is made visible.
 function anomalydetection_OpeningFcn(hObject, eventdata, handles, varargin)
 
@@ -27,46 +26,16 @@ handles.output = hObject;
 
 % Update handles structure
 
+%dehabilitar boton calcular e imprimir
 set(handles.btnCalcular,'enable','off');
 set(handles.btnImprimir,'enable','off');
 guidata(hObject, handles);
 
-% UIWAIT makes anomalydetection wait for user response (see UIRESUME)
-% uiwait(handles.figure1);
-
 
 % --- Outputs from this function are returned to the command line.
 function varargout = anomalydetection_OutputFcn(hObject, eventdata, handles) 
-% varargout  cell array for returning output args (see VARARGOUT);
-% hObject    handle to figure
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
 
-% Get default command line output from handles structure
 varargout{1} = handles.output;
-
-
-
-function etRuta_Callback(hObject, eventdata, handles)
-% hObject    handle to etRuta (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hints: get(hObject,'String') returns contents of etRuta as text
-%        str2double(get(hObject,'String')) returns contents of etRuta as a double
-
-
-% --- Executes during object creation, after setting all properties.
-function etRuta_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to etRuta (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    empty - handles not created until after all CreateFcns called
-
-% Hint: edit controls usually have a white background on Windows.
-%       See ISPC and COMPUTER.
-if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
-    set(hObject,'BackgroundColor','white');
-end
 
 
 % --- Executes on button press in btnAbrir.
@@ -103,18 +72,15 @@ end
 % --- Executes on button press in btnCalcular.
 function btnCalcular_Callback(hObject, eventdata, handles)
 
-fprintf('Loading data...\n');
 %Carga de datos desde variable local 
 global nombre;
 global carpeta;
 load(strcat(carpeta,nombre),'X','Xval','yval');
 
 % Estimate mu and sigma2.
-fprintf('Estimating mu and sigma2...\n');
 [mu sigma2] = estimate_gaussian(X);
 
 % Visualize the fit.
-fprintf('Visualizing data and Gaussian distribution...\n');
 visualize_fit(X,  mu, sigma2);
 xlabel('Latency (ms)');
 ylabel('Throughput (mb/s)');
@@ -124,10 +90,7 @@ title('Servers Parameters');
 probabilities = multivariate_gaussian(X, mu, sigma2);
 
 % Select best threshold.
-fprintf('Selecting a best threshold...\n');
 [epsilon F1] = select_threshold(yval, probabilities);
-fprintf('Best epsilon found using cross-validation: %e\n', epsilon);
-fprintf('Best F1 on Cross Validation Set:  %f\n', F1);
 
 %Cambio repositorio original
 %Llenando labels de GUI 
@@ -135,8 +98,6 @@ set(handles.lblEpsilon,'String',epsilon);
 set(handles.lblF1,'String',F1);
 
 % Plottin outliers.
-fprintf('Plottin outliers...\n');
-
 %  Find the outliers in the training set and plot them.
 outliers = find(probabilities < epsilon);
 
@@ -144,10 +105,13 @@ outliers = find(probabilities < epsilon);
 hold on;
 plot(X(outliers, 1), X(outliers, 2), 'ro', 'LineWidth', 2, 'MarkerSize', 10);
 legend('Training set', 'Gaussian contour', 'Anomalies');
+
+%habilitando boton imprimir y deshabilitando boton calcular
 set(handles.btnCalcular,'enable','off');
 set(handles.btnImprimir,'enable','on');
-save C:\Matlab\Data\VarAnomalyDetection.mat X Xval yval epsilon F1
 
+%guardando datos en archivo .mat para impresion de PFD o DOC
+save C:\Matlab\Data\VarAnomalyDetection.mat X Xval yval epsilon F1
 
 
 % --- Executes on button press in btnAtras.
