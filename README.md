@@ -1,10 +1,10 @@
 ﻿# Machine Learning en MatLab/Octave con interfaz grafica
 
-> _Para la version original de Python/Jupyter puedes visitar el siguiente enlace [homemade-machine-learning](https://github.com/trekhleb/homemade-machine-learning) project._
+> _Para la version original de Python/Jupyter puedes visitar el siguiente enlace [homemade-machine-learning](https://github.com/trekhleb/homemade-machine-learning)._
 
-Este repositorio contiene ejemplos en MatLab/Octavee de algoritmos populares de machine learning con las matematicas detras de estos explicadas.
+Este repositorio contiene ejemplos en MatLab/Octave de algoritmos populares de machine learning con las matematicas detras de estos explicadas.
 
-El propósito de este repositorio era para _no_ implementar algoritmos de Machine Learning utilizando bibliotecas de 3<sup>rd</sup> en Octave/MatLab "de una sola línea", _para_ practicar y entender mejor las matemáticas detrás de cada algoritmo. En la mayoría de los casos, las explicaciones se basan en este [gran curso](https://www.coursera.org/learn/machine-learning) de Machine Learning.
+El propósito de este repositorio era para _no_ implementar algoritmos de Machine Learning utilizando bibliotecas de 3<sup>rd</sup> en Octave/MatLab "de una sola línea", con el _proposito_ de practicar y entender mejor las matemáticas detrás de cada algoritmo. En la mayoría de los casos, las explicaciones se basan en este [curso](https://www.coursera.org/learn/machine-learning) de Machine Learning.
 
 
 ## Aprendizaje Supervisado 
