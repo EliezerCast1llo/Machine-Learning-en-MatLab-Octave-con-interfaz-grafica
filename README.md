@@ -1,104 +1,75 @@
-# Machine Learning in MatLab/Octave
+﻿# Machine Learning en MatLab/Octave con interfaz grafica
 
-> _For Python/Jupyter version of this repository please check [homemade-machine-learning](https://github.com/trekhleb/homemade-machine-learning) project._
+> _Para la version original de Python/Jupyter puedes visitar el siguiente enlace [homemade-machine-learning](https://github.com/trekhleb/homemade-machine-learning) project._
+
+Este repositorio contiene ejemplos en MatLab/Octavee de algoritmos populares de machine learning con las matematicas detras de estos explicadas.
+
+El propósito de este repositorio era para _no_ implementar algoritmos de Machine Learning utilizando bibliotecas de 3<sup>rd</sup> en Octave/MatLab "de una sola línea", _para_ practicar y entender mejor las matemáticas detrás de cada algoritmo. En la mayoría de los casos, las explicaciones se basan en este [gran curso](https://www.coursera.org/learn/machine-learning) de Machine Learning.
 
 
-This repository contains MatLab/Octave examples of popular machine learning algorithms with code examples and mathematics behind them being explained.
+## Aprendizaje Supervisado 
 
-The purpose of this repository was _not_ to implement machine learning algorithms using 3<sup>rd</sup> party libraries or Octave/MatLab "one-liners" _but_ rather to practice and to better understand the mathematics behind each algorithm. In most cases the explanations are based on [this great](https://www.coursera.org/learn/machine-learning) machine learning course.
+En el aprendizaje supervisado tenemos un conjunto de datos de entrenamiento como una entrada y un conjunto de etiquetas o "respuestas correctas" para cada conjunto de entrenamiento como una salida. Luego, estamos entrenando a nuestro algoritmo (parámetros del algoritmo de Machine Learning) para asignar la entrada a la salida correctamente (para hacer la predicción correcta). El propósito final es encontrar dichos parámetros del algoritmo que continuarán con éxito entrada → mapeo de salida (predicciones) incluso para los nuevos ejemplos de entrada.
 
-## Supervised Learning
+### Regresión
 
-In supervised learning we have a set of training data as an input and a set of labels or "correct answers" for each training set as an output. Then we're training our model (machine learning algorithm parameters) to map the input to the output correctly (to do correct prediction). The ultimate purpose is to find such model parameters that will successfully continue correct input→output mapping (predictions) even for new input examples.
+En problemas de regresión hacemos predicciones de valor real. Básicamente tratamos de dibujar un plano de línea/plano/n-dimensional a lo largo de los ejemplos de entrenamiento.
 
-### Regression
+_Ejemplos: previsión del precio de las acciones, análisis de ventas, dependencia de cualquier número, etc._
 
-In regression problems we do real value predictions. Basically we try to draw a line/plane/n-dimensional plane along the training examples.
+🤖 [Regresion Lineal](./linear-regression) - ejemplo: predicción de precios de viviendas.
 
-_Usage examples: stock price forecast, sales analysis, dependency of any number, etc._
+### Clasificación
 
-🤖 [Linear Regression](./linear-regression) - example: house prices prediction.
+En los problemas de clasificación dividimos los ejemplos de entrada por ciertas características.
 
-### Classification
+_Ejemplos: filtros de spam, detección de idioma, búsqueda de documentos similares, reconocimiento de letras escritas a mano, etc._
 
-In classification problems we split input examples by certain characteristic.
 
-_Usage examples: spam-filters, language detection, finding similar documents, handwritten letters recognition, etc._
+🤖 [Regresion Logistica](./logistic-regression) _ejemplos: detección de la condición física de los microchips, reconocimiento de letras escritas a mano usando el enfoque de uno contra todos._
 
-🤖 [Logistic Regression](./logistic-regression) - examples: microchip fitness detection, handwritten digits recognitions using one-vs-all approach.
+## Aprendizaje sin supervisión
 
-## Unsupervised Learning
+El aprendizaje sin supervisado es una rama del Machine Learning que aprende de datos de pruebas que no se han etiquetado, clasificado o categorizado. En lugar de responder a la retroalimentación, el aprendizaje no supervisado identifica puntos en común en los datos y reacciona en función de la presencia o ausencia de tales puntos en común en cada nueva pieza de datos.
 
-Unsupervised learning is a branch of machine learning that learns from test data that has not been labeled, classified or categorized. Instead of responding to feedback, unsupervised learning identifies commonalities in the data and reacts based on the presence or absence of such commonalities in each new piece of data.
+### Agrupamiento
 
-### Clustering
+En problemas de agrupamiento dividimos los ejemplos de entrenamiento por características desconocidas. El algoritmo mismo decide qué característica usar para la división.
 
-In clustering problems we split the training examples by unknown characteristics. The algorithm itself decides what characteristic to use for splitting.
+_Ejemplos: segmentación del mercado, análisis de redes sociales, organización de clusters de computación, análisis de datos astronómicos, compresión de imágenes, etc._
 
-_Usage examples: market segmentation, social networks analysis, organize computing clusters, astronomical data analysis, image compression, etc._
+🤖 [K-means algoritmo](./k-means) _ejemplo: dividir datos en tres grupos._
 
-🤖 [K-means algorithm](./k-means) - example: split data into three clusters.
+### Detección de anomalías
 
-### Anomaly Detection
+La detección de anomalías (también la detección de valores atípicos) es la identificación de elementos raros, eventos u observaciones que generan sospechas al diferir significativamente de la mayoría de los datos.
 
-Anomaly detection (also outlier detection) is the identification of rare items, events or observations which raise suspicions by differing significantly from the majority of the data.
+_Ejemplos: detección de intrusiones, detección de fraudes, monitoreo del estado del sistema, eliminación de datos anómalos del conjunto de datos, etc._
 
-_Usage examples: intrusion detection, fraud detection, system health monitoring, removing anomalous data from the dataset etc._
+🤖 [Detección de anomalías mediante distribución gaussiana](./anomaly-detection) _ejemplo: detectar un servidor sobrecargado._
 
-🤖 [Anomaly Detection using Gaussian distribution](./anomaly-detection) - example: detect overloaded server.
+## Red neuronal (NN)
 
-## Neural Network (NN)
+La red neuronal en sí no es un algoritmo, sino un marco para que muchos algoritmos de aprendizaje automático trabajen juntos y procesen entradas de datos complejos.
 
-The neural network itself isn't an algorithm, but rather a framework for many different machine learning algorithms to work together and process complex data inputs.
+_Ejemplos: como sustituto de todos los demás algoritmos en general, reconocimiento de imágenes, reconocimiento de voz, procesamiento de imágenes (aplicando un estilo específico), traducción de idiomas, etc._
 
-_Usage examples: as a substitute of all other algorithms in general, image recognition, voice recognition, image processing (applying specific style), language translation, etc._
 
-🤖 [Neural Network: Multilayer Perceptron (MLP)](./neural-network) - example: handwritten digits recognition.
+🤖 [Red neuronal: Perceptrón multicapa (MLP)](./neural-network) - ejemplo: reconocimiento de dígitos a mano.
 
-## Machine Learning Map
+## Mapa de aprendizaje automático
 
 ![Machine Learning Map](./images/machine-learning-map.png)
 
-The source of the following machine learning topics map is [this wonderful blog post](https://vas3k.ru/blog/machine_learning/)
+La fuente del anterior mapa de temas de aprendizaje automático es [esta publicacion en un blog](https://vas3k.ru/blog/machine_learning/)
 
-## How to Use This Repository
 
-### Install Octave or MatLab
+## ¿Comó usar este repositorio? 
 
-This repository contains `*.m` scripts that are intended to be run in [Octave](https://www.gnu.org/software/octave/) or [MatLab](https://www.mathworks.com/products/matlab.html). Thus in order to launch demos you need either Octave or MatLab to be installed on you local machine. In case of MatLab you may also use its [web-version](https://matlab.mathworks.com/).
+### Instalar MatLab
 
-### Run Demos
+Este repositorio contiene `*.m` scripts que están destinados a ejecutarse en Octave o MatLab . Por lo tanto, para correr cualquier archivo, necesita que MatLab este instalado en su máquina local. En el caso de MatLab también puede utilizar su [versión web](https://matlab.mathworks.com/).
 
-In order to run the demo of your choice you should move to the chosen folder (i.e. `neural-network`):
+### Usar la interfaz grafica 
 
-```bash
-cd neural-network
-```
-
-Launch Octave console:
-
-```bash
-octave
-```
-
-Launch demo script from Octave console:
-
-```bash
-demo
-```
-
-To see all demo variables you may launch:
-
-```bash
-whos
-```
-
-To exit the demo you may launch:
-
-```bash
-exit
-```
-
-Also be aware that demo scripts opens additional window with charts and other graphical information that is related to the running algorithm. You may find screenshots of the window that each demo will render for you on the dedicated README files for each machine learning algorithm.
-
-![Demos](./images/demos.png)
+Para ejecutar el algoritmo de su elección, debe ir a la carpeta elegida por ejemplo: (`neural-network`), y debera identificar el `*.m` que contiene la interfaz grafica, son dos archivos con el mismo nombre pero diferente extención `*.m` y `*.fig` para el caso de `neural-network` sera `RedNeuronal.m` y `RedNeuronal.fig` y ejecutar el archivo ".m" el cual cargara la intefaz grafica 
