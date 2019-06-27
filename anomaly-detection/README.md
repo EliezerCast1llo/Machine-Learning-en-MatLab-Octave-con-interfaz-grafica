@@ -108,7 +108,7 @@ _fn_ - número de falsos negativos.
 - [visualize_fit.m](./visualize_fit.m) - Función que visualiza el conjunto de datos y su distribución estimada.
 - [anomalydetection.m](./anomalydetection.m) - archivo principal que debe ejecutar desde Octave/MatLab para usar el algoritmo desde el entorno grafico.
 - [anomalydetection.fig](./anomalydetection.fig) - archivo que almacena los gráficos, que se utilizan para visualizar los datos.
-- [printAD.fig](./printAD.fig) - archivo que contiene el formato de los resultados que imprime en los archivos .doc y .pdf.
+- [printAD.m](./printAD.m) - archivo que contiene el formato de los resultados que imprime en los archivos .doc y .pdf.
 
 ### Visualizaciones de los resultados
 
