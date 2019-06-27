@@ -62,8 +62,17 @@ anomalydetection';
 
 % --- Executes on button press in btnRedNeuro.
 function btnRedNeuro_Callback(hObject, eventdata, handles)
-cd neural-netword/
+cd neural-network/
 clear all;
 close all;
 clc;
-RedNeural';
+RedNeuronal';
+
+
+% --- Executes on button press in btnKMeans.
+function btnKMeans_Callback(hObject, eventdata, handles)
+cd k-means/
+clear all;
+close all;
+clc;
+kmeans';
