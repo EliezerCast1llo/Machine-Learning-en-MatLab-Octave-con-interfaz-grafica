@@ -1,30 +1,31 @@
-# Anomaly Detection Using Gaussian Distribution
+# Detección de anomalías mediante distribución gaussiana
+## Distribución Gaussiana (Normal)
 
-## Gaussian (Normal) Distribution
+La **distribución normal** (o **Gaussiana** ) es una distribución de probabilidad continua muy común. Las distribuciones normales son importantes en las estadísticas y a menudo se usan en las ciencias naturales y sociales para representar variables aleatorias de valor real cuyas distribuciones no se conocen. Una variable aleatoria con una distribución gaussiana se dice que se distribuye normalmente y se llama desviación normal.
 
-The **normal** (or **Gaussian**) **distribution** is a very common continuous probability distribution. Normal distributions are important in statistics and are often used in the natural and social sciences to represent real-valued random variables whose distributions are not known. A random variable with a Gaussian distribution is said to be normally distributed and is called a normal deviate.
-
-Let's say:
+Digamos:
 
 ![x-in-R](./formulas/x-in-R.svg)
 
-If _x_ is normally distributed then it may be displayed as follows.
+Si _x_ se distribuye normalmente, puede mostrarse de la siguiente manera.
 
 ![Gaussian Distribution](https://upload.wikimedia.org/wikipedia/commons/7/74/Normal_Distribution_PDF.svg)
 
-![mu](./formulas/mu.svg) - mean value,
+![mu](./formulas/mu.svg) - valor medio,
 
-![sigma-2](./formulas/sigma-2.svg) - variance.
+![sigma-2](./formulas/sigma-2.svg) - varianza.
 
-![x-normal](./formulas/x-normal.svg) - "~" means that _"x is distibuted as ..."_
+![x-normal](./formulas/x-normal.svg) - "~" significa que _"x se distribuye como ..."_
 
-Then Gaussian distribution (probability that some _x_ may be a part of distribution with certain mean and variance) is given by:
+Luego, la distribución gaussiana (la probabilidad de que alguna _x_ sea ??parte de la distribución con cierta media y varianza) viene dada por:
 
 ![Gaussian Distribution](./formulas/p.svg)
 
-## Estimating Parameters for a Gaussian
+## Estimando parámetros para un Gaussiano
 
 We may use the following formulas to estimate Gaussian parameters (mean and variation) for _i<sup>th</sup>_ feature:
+
+Podemos utilizar las siguientes fórmulas para calcular los parámetros de Gauss (media y variación) para _i<sup>ésimo<sup>_ característica:
 
 ![mu-i](./formulas/mu-i.svg)
 
@@ -32,19 +33,19 @@ We may use the following formulas to estimate Gaussian parameters (mean and vari
 
 ![i](./formulas/i.svg)
 
-![m](./formulas/m.svg) - number of training examples.
+![m](./formulas/m.svg) - Número de ejemplos de entrenamiento.
 
-![n](./formulas/n.svg) - number of features.
+![n](./formulas/n.svg) - Número de características.
 
-## Density Estimation
+## Estimación de densidad
 
-So we have a training set:
+Así que tenemos un conjunto de entrenamiento:
 
 ![Training Set](./formulas/training-set.svg)
 
 ![x-in-R](./formulas/x-in-R.svg)
 
-We assume that each feature of the training set is normally distributed:
+Suponemos que cada característica del conjunto de entrenamiento se distribuye normalmente:
 
 ![x-1](./formulas/x-1.svg)
 
@@ -52,7 +53,7 @@ We assume that each feature of the training set is normally distributed:
 
 ![x-n](./formulas/x-n.svg)
 
-Then:
+Entonces:
 
 ![p-x](./formulas/p-x.svg)
 
@@ -60,59 +61,62 @@ Then:
 
 ## Anomaly Detection Algorithm
 
-1. Choose features ![x-i](./formulas/x-i.svg) that might be indicative of anomalous examples (![Training Set](./formulas/training-set.svg)).
-2. Fit parameters ![params](./formulas/params.svg) using formulas:
+1. Elija las características ![x-i](./formulas/x-i.svg) que puedan ser indicativas de ejemplos anómalos (![Training Set](./formulas/training-set.svg)).
+2. Ajustar los parametros ![params](./formulas/params.svg) utilizando las siguientes fórmulas:
 
 ![mu-i](./formulas/mu-i.svg)
 
 ![sigma-i](./formulas/sigma-i.svg)
 
-3. Given new example _x_, compute _p(x)_:
+3. Dado el nuevo ejemplo _x_, calcular _p(x)_:
 
 ![p-x-2](./formulas/p-x-2.svg)
 
-Anomaly if ![anomaly](./formulas/anomaly.svg)
+Anomalía si ![anomaly](./formulas/anomaly.svg)
 
-![epsilon](./formulas/epsilon.svg) - probability threshold.
+![epsilon](./formulas/epsilon.svg) - umbral de probabilidad.
 
-## Algorithm Evaluation
+## Evaluación de algoritmos
 
-The algorithm may be evaluated using _F1_ score.
+El algoritmo puede ser evaluado usando el puntaje de F1 .
 
-The F1 score is the harmonic average of the precision and recall, where an F1 score reaches its best value at _1_ (perfect precision and recall) and worst at _0_.
+El puntaje de F1 es el promedio armónico de la precisión y el recuerdo, donde un puntaje de F1 alcanza su mejor valor en 1 (precisión perfecta y recordatorio) y el peor en 0.
 
 ![F1 Score](https://upload.wikimedia.org/wikipedia/commons/2/26/Precisionrecall.svg)
 
 ![f1](./formulas/f1.svg)
 
-Where:
+Dónde:
 
 ![precision](./formulas/precision.svg)
 
 ![recall](./formulas/recall.svg)
 
-_tp_ - number of true positives.
+_tp_ - número de verdaderos positivos.
 
-_fp_ - number of false positives.
+_fp_ - número de falsos positivos.
 
-_fn_ - number of false negatives.
+_fn_ - número de falsos negativos.
 
-## Files
+## Archivos
 
-- [demo.m](./demo.m) - main file that you should run from Octave console in order to see the demo.
-- [server_params.mat](./server_params.mat) - training data set.
-- [estimate_gaussian.m](./estimate_gaussian.m) - this function estimates the parameters of a Gaussian distribution using the data in X.
-- [multivariate_gaussian.m](./multivariate_gaussian.m) - function that computes the probability density function of the multivariate gaussian distribution.
-- [select_threshold.m](./select_threshold.m) - function that finds the best threshold (epsilon) to use for selecting outliers.
-- [visualize_fit.m](./visualize_fit.m) - Function that visualizes the data set and its estimated distribution.
+- [demo.m](./demo.m) -  archivo principal que debe ejecutar desde la consola de Octave/MatLab para ver la demostración desde la consola.
+- [server_params.mat](./server_params.mat) - conjunto de datos de entrenamiento.
+- [estimate_gaussian.m](./estimate_gaussian.m) - esta función estima los parámetros de una distribución gaussiana usando los datos en X.
+- [multivariate_gaussian.m](./multivariate_gaussian.m) - función que calcula la función de densidad de probabilidad de la distribución gaussiana multivariada.
+- [select_threshold.m](./select_threshold.m) - función que encuentra el mejor umbral (épsilon) que se usará para seleccionar valores atípicos.
+- [visualize_fit.m](./visualize_fit.m) - Función que visualiza el conjunto de datos y su distribución estimada.
+- [anomalydetection.m](./anomalydetection.m) - archivo principal que debe ejecutar desde Octave/MatLab para usar el algoritmo desde el entorno grafico.
+- [anomalydetection.fig](./anomalydetection.fig) - archivo que almacena los gráficos, que se utilizan para visualizar los datos.
+- [printAD.fig](./printAD.fig) - archivo que contiene el formato de los resultados que imprime en los archivos .doc y .pdf.
 
-### Demo visualizations
+### Visualizaciones de los resultados
 
 ![Demo visualization](./formulas/demo.png)
 
-## References
+## Referencias
 
-- [Machine Learning on Coursera](https://www.coursera.org/learn/machine-learning)
-- [Normal Distribution on Wikipedia](https://en.wikipedia.org/wiki/Normal_distribution)
-- [F1 Score on Wikipedia](https://en.wikipedia.org/wiki/F1_score)
+- [Machine Learning en Coursera](https://www.coursera.org/learn/machine-learning)
+- [Distribución normal en Wikipedia](https://es.wikipedia.org/wiki/Distribución_normal)
+- [Valor F1 en Wikipedia](https://es.wikipedia.org/wiki/Valor-F)
   
