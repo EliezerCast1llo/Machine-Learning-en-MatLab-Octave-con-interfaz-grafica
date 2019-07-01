@@ -1,14 +1,14 @@
-# K-Means Algorithm
+﻿# Algoritmo de K-medias
 
-**K-means clustering** aims to partition n observations into _K_ clusters in which each observation belongs to the cluster with the nearest mean, serving as a prototype of the cluster.
+Tiene como objetivo dividir n observaciones en K clústeres en los que cada observación pertenece al clúster con la media más cercana, y sirve como prototipo del clúster.
 
-The result of a cluster analysis shown below as the coloring of the squares into three clusters.
+El resultado de un análisis de grupo se muestra a continuación como la coloración de los cuadrados en tres grupos.
 
 ![Clustering](https://upload.wikimedia.org/wikipedia/commons/c/c8/Cluster-2.svg)
 
-## Description
+## Descripción
 
-Given a training set of observations:
+Dado un conjunto de observaciones formativas:
 
 ![Training set](./formulas/training-set.svg)
 
@@ -16,61 +16,67 @@ Given a training set of observations:
 
 Where each observation is a _d_-dimensional real vector, k-means clustering aims to partition the _m_ observations into _K_ (_≤ m_) clusters:
 
+Donde cada observación es un vector real _d_- dimensional, el agrupamiento de k-means tiene como objetivo dividir las _m_ observaciones en _K_ ( _≤ m_ ) agrupamientos:
+
 ![Clusters](./formulas/clasters.svg)
 
-... so as to minimize the within-cluster sum of squares (i.e. variance).
+... para minimizar la suma de cuadrados dentro del grupo (es decir, la varianza).
 
-Below you may find an example of 4 random cluster centroids initialization and further clusters convergence:
+A continuación puede encontrar un ejemplo de 4 inicializaciones aleatorias de centroides de clúster y convergencia adicional de clústeres:
 
 ![Clustering](http://shabal.in/visuals/kmeans/random.gif)
 
-[Picture Source](http://shabal.in/visuals/kmeans/6.html)
+[Fuente de la imagen](http://shabal.in/visuals/kmeans/6.html)
 
-Another illustration of k-means convergence:
+Otra ilustración de la convergencia de k-medias:
 
 ![Clustering](https://upload.wikimedia.org/wikipedia/commons/e/ea/K-means_convergence.gif)
 
-## Cost Function (Distortion)
+## Función de coste (distorsión)
 
-![c-i](./formulas/c-i.svg) - index of cluster _(1, 2, ..., K)_ to which example _x<sup>(i)</sup>_ is currently assigned.
+![c-i](./formulas/c-i.svg) - índice del grupo _(1, 2, ..., K)_ al que está asignado actualmente el ejemplo _x<sup>(i)</sup>.
 
-![mu-k](./formulas/mu-k.svg) - cluster centroid _k_ (![mu-k-2](./formulas/mu-k-2.svg)) and ![k](./formulas/k.svg).
+![mu-k](./formulas/mu-k.svg) - cluster centroide _k_ (![mu-k-2](./formulas/mu-k-2.svg)) y ![k](./formulas/k.svg).
 
-![mu-c-i](./formulas/mu-c-i.svg) - cluster centroid of a cluster to which the example _x<sup>(i)</sup>_ has been assigned.
+![mu-c-i](./formulas/mu-c-i.svg) - centroide del clúster de un clúster al que se asignó el ejemplo _x<sup>(i)</sup>_.
 
-For example:
+Por ejemplo:
 
 ![Cluster example](./formulas/cluster-example.svg)
 
-In this case optimization objective will look like the following:
+En este caso, el objetivo de optimización será el siguiente:
 
 ![Cost Function](./formulas/cost-function.svg)
 
 ![Clustering](https://upload.wikimedia.org/wikipedia/commons/d/d1/KMeans-density-data.svg)
 
-## The Algorithm
+## El algoritmo
 
-Randomly initialize _K_ cluster centroids (randomly pick _K_ training examples and set _K_ cluster centroids to that examples).
+Inicialice aleatoriamente los centroides del grupo _K_ (elija ejemplos de entrenamiento de _K_ al azar y configure los centroides del grupo _K_ para esos ejemplos).
 
 ![Centroids](./formulas/centroids.svg)
 
 ![k-means-algorithm](./formulas/k-means-algorithm.svg)
 
-## Files
+## Archivos
 
-- [demo.m](./demo.m) - main demo file that you should run from Octave console.
-- [set1.mat](./set1.mat) - training data set #1.
-- [set2.mat](./set2.mat) - training data set #2.
-- [compute_centroids.m](./compute_centroids.m) - compute the next mean centroid for each cluster.
-- [find_closest_centroids.m](./find_closest_centroids.m) - split training examples into cluster based on the distance to centroids.
-- [init_centroids.m](./init_centroids.m) - randomly init centroids by taking random training examples.
-- [k_means_train.m](./k_means_train.m) - function that runs K-Means algorithm.
+- [demo.m](./demo.m) - archivo de demostración en consola del algoritmo
+- [set1.mat](./set1.mat) - conjunto de datos de entrenamiento # 1.
+- [set2.mat](./set2.mat) - conjunto de datos de entrenamiento # 2.
+- [compute_centroids.m](./compute_centroids.m) - calcula el siguiente centroide medio para cada grupo.
+- [find_closest_centroids.m](./find_closest_centroids.m) - divide los ejemplos de entrenamiento en grupos según la distancia a los centroides.
+- [init_centroids.m](./init_centroids.m) - inicia aleatoriamente los centroides tomando ejemplos de entrenamiento aleatorios.
+- [k_means_train.m](./k_means_train.m) - función que ejecuta el algoritmo K-Means.
+- [kmeans.m](./kmeans.m) - archivo principal que debe ejecutar desde Octave/MatLab para usar el algoritmo desde el entorno grafico.
+- [kmeans.fig](./kmeans.fig) - archivo que almacena los gráficos, que se utilizan para visualizar los datos.
+- [printKM.m](./printKM.m) - archivo que contiene el formato de los resultados que imprime en los archivos .doc y .pdf.
 
-### Demo visualizations
+
+### Visualizaciones de demostración
 
 ![Demo visualization](./formulas/demo.png)
 
-## References
+## Referencias
 
-- [Machine Learning on Coursera](https://www.coursera.org/learn/machine-learning)
-- [K-means on Wikipedia](https://en.wikipedia.org/wiki/K-means_clustering)
+- [Machine Learning en Coursera](https://www.coursera.org/learn/machine-learning)
+- [K-means en Wikipedia](https://es.wikipedia.org/wiki/K-medias)
