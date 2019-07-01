@@ -1,184 +1,192 @@
-ï»¿# RegresiÃ³n lineal
+# Regresión logística
 
-**La regresiÃ³n lineal** es un modelo lineal, por ejemplo, un modelo que asume una relaciÃ³n lineal entre las variables de entrada (_x_) y la variable de salida Ãºnica (_y_). MÃ¡s especÃ­ficamente, esa variable de salida (_y_) se puede calcular a partir de una combinaciÃ³n lineal de las variables de entrada (_x_).
+**La regresión logística** es el análisis de regresión apropiado para realizar cuando la variable dependiente es dicotómica (binaria). Como todos los análisis de regresión, la regresión logística es un análisis predictivo. La regresión logística se utiliza para describir datos y para explicar la relación entre una variable binaria dependiente y una o más variables independientes nominales, ordinales, de intervalo o de relación.
 
-![Linear Regression](https://upload.wikimedia.org/wikipedia/commons/3/3a/Linear_regression.svg)
+La regresión logística se utiliza cuando la variable dependiente (objetivo) es categórica.
 
-En la imagen de arriba hay un ejemplo de dependencia entre la variable de entrada _x_ y la variable de salida _y_. La lÃ­nea roja en el grÃ¡fico anterior se conoce como la mejor lÃ­nea recta de ajuste. BasÃ¡ndonos en los puntos de datos dados (ejemplos de entrenamiento), intentamos trazar una lÃ­nea que modele los puntos de la mejor manera. En el escenario del mundo real normalmente tenemos mÃ¡s de una variable de entrada.
+Por ejemplo:
 
-## CaracterÃ­sticas (variables)
+- Para predecir si un correo electrónico es spam (1) o (0).
+- Si la transacción en línea es fraudulenta (1) o no (0).
+- Si el tumor es maligno (1) o no (0).
 
-Cada ejemplo de capacitaciÃ³n consta de caracterÃ­sticas (variables) que describen este ejemplo (es decir, el nÃºmero de habitaciones, la plaza del apartamento, etc.)
+En otras palabras, la variable dependiente (salida) para el modelo de regresión logística se puede describir como:
 
-![Features](./formulas/features.svg)
+![Logistic Regression Output](./formulas/output.svg)
 
-_n_ - nÃºmero de caracterÃ­sticas
+![Logistic Regression](https://cdn-images-1.medium.com/max/1600/1*4G0gsu92rPhN-co9pv1P5A@2x.png)
 
-_R<sup>n+1</sup>_ - vector de _n+1_ nÃºmeros reales
+![Logistic Regression](https://cdn-images-1.medium.com/max/1200/1*KRhpHnucyX9Y5PMdjGvVFA.png)
 
-## ParÃ¡metros
+## Conjunto de entrenamiento
 
-Los parÃ¡metros de la hipÃ³tesis queremos que nuestro algoritmo aprenda para poder hacer predicciones (es decir, predecir el precio del apartamento).
+El conjunto de capacitación es un dato de entrada donde para cada conjunto predefinido de características _x_ tenemos una clasificación correcta _y_.
 
-![Parameters](./formulas/parameters.svg)
+![Training Set](./formulas/training-set-1.svg)
 
-## HipÃ³tesis
+_m_ - número de ejemplos de conjuntos de entrenamiento.
 
-La ecuaciÃ³n que obtiene caracterÃ­sticas y parÃ¡metros como entrada y predice el valor como salida (es decir, predice el precio del apartamento segÃºn su tamaÃ±o y nÃºmero de habitaciones).
+![Training Set](./formulas/training-set-2.svg)
 
-![Hypothesis](./formulas/hypothesis.svg)
+Para mayor comodidad de la notación, defina:
 
-Para mayor comodidad de la notaciÃ³n, defina _X<sub>0</sub> = 1_
+![x-zero](./formulas/x-0.svg)
 
-## FunciÃ³n de costo
+![Logistic Regression Output](./formulas/output.svg)
 
-FunciÃ³n que muestra la precisiÃ³n de las predicciones de la hipÃ³tesis con el conjunto actual de parÃ¡metros.
+## Hipótesis (El Modelo)
 
-![Cost Function](./formulas/cost-function.svg)
+La ecuación que obtiene características y parámetros como una entrada y predice el valor como una salida (es decir, predice si el correo electrónico es spam o no según algunas características del correo electrónico).
 
-_x<sup>i</sup>_ - de entrada (caracterÃ­sticas) de _i<sup>Ã©nesimo</sup>_ ejemplo de entrenamiento
+![Hypothesis](./formulas/hypothesis-1.svg)
 
-_y<sup>i</sup>_ - salida del _i<sup>Ã©nesimo</sup>_ ejemplo de entrenamiento
+Donde _g()_ es una **función sigmoide**.
 
-_m_ - nÃºmero de ejemplos de entrenamiento
+![Sigmoid](./formulas/sigmoid.svg)
+
+![Sigmoid](https://upload.wikimedia.org/wikipedia/commons/8/88/Logistic-curve.svg)
+
+Ahora nosotros escribimos la hipótesis de la siguiente manera:
+
+![Hypothesis](./formulas/hypothesis-2.svg)
+
+![Predict 0](./formulas/predict-0.svg)
+
+![Predict 1](./formulas/predict-1.svg)
+
+## Función de costo
+
+Función que muestra la precisión de las predicciones de la hipótesis con el conjunto actual de parámetros.
+
+![Cost Function](./formulas/cost-function-1.svg)
+
+![Cost Function](./formulas/cost-function-4.svg)
+
+![Cost Function](./formulas/cost-function-2.svg)
+
+La función de costo se puede simplificar a la siguiente línea:
+
+![Cost Function](./formulas/cost-function-3.svg)
 
 ## Lote Gradiente Descenso
 
-El descenso de gradiente es un algoritmo de optimizaciÃ³n iterativo para encontrar el mÃ­nimo de una funciÃ³n de costo descrita anteriormente. Para encontrar el mÃ­nimo local de una funciÃ³n que utiliza el descenso de gradiente, uno toma pasos proporcionales al negativo del gradiente (o gradiente aproximado) de la funciÃ³n en el punto actual.
+El descenso de gradiente es un algoritmo de optimización iterativo para encontrar el mínimo de una función de costo descrita anteriormente. Para encontrar el mínimo local de una función que utiliza el descenso de gradiente, uno toma pasos proporcionales al negativo del gradiente (o gradiente aproximado) de la función en el punto actual.
 
-La imagen de abajo ilustra los pasos que tomamos al bajar la colina para encontrar el mÃ­nimo local.
+La imagen de abajo ilustra los pasos que tomamos al bajar la colina para encontrar el mínimo local.
 
 ![Gradient Descent](https://cdn-images-1.medium.com/max/1600/1*f9a162GhpMbiTVTAua_lLQ.png)
 
-La direcciÃ³n del paso se define por la derivada de la funciÃ³n de costo en el punto actual.
+La dirección del paso se define por la derivada de la función de costo en el punto actual.
 
 ![Gradient Descent](https://cdn-images-1.medium.com/max/1600/0*rBQI7uBhBKE8KT-X.png)
 
-Una vez que decidimos quÃ© direcciÃ³n debemos seguir, debemos decidir cuÃ¡l es el tamaÃ±o del paso que debemos tomar.
+Una vez que decidimos qué dirección debemos seguir, debemos decidir cuál es el tamaño del paso que debemos tomar.
 
 ![Gradient Descent](https://cdn-images-1.medium.com/max/1600/0*QwE8M4MupSdqA3M4.png)
 
-Necesitamos actualizar simultÃ¡neamente ![Theta](./formulas/theta-j.svg) para _j = 0, 1, ..., n_
+Necesitamos actualizar simultáneamente ![Theta](./formulas/theta-j.svg) para _j = 0, 1, ..., n_
 
 ![Gradient Descent](./formulas/gradient-descent-1.svg)
 
 ![Gradient Descent](./formulas/gradient-descent-2.svg)
 
-![alpha](./formulas/alpha.svg) - la velocidad de aprendizaje, la constante que define el tamaÃ±o del paso de descenso del degradado
+![alpha](./formulas/alpha.svg) - la velocidad de aprendizaje, la constante que define el tamaño del paso de descenso del degradado
 
-![x-i-j](./formulas/x-i-j.svg) - _j<sup>Ã©simo</sup>_ valor de la caracterÃ­stica del _i<sup>Ã©simo</sup>_ ejemplo de entrenamiento
+![x-i-j](./formulas/x-i-j.svg) - _j<sup>ésimo</sup>_ valor de la característica del _i<sup>ésimo</sup>_ ejemplo de entrenamiento
 
-![x-i](./formulas/x-i.svg) - entrada (caracterÃ­sticas) de _i<sup>th</sup>_ ejemplo de entrenamiento
+![x-i](./formulas/x-i.svg) - entrada (características) de _i<sup>ésimo</sup>_ ejemplo de entrenamiento
 
-_y<sup>i</sup>_ - salida del _i<sup>Ã©simo</sup>_ ejemplo de entrenamiento
+_y<sup>i</sup>_ - salida del _i<sup>ésimo</sup>_ ejemplo de entrenamiento
 
-_m_ - nÃºmero de ejemplos de entrenamiento
+_m_ - número de ejemplos de entrenamiento
 
-_n_ - nÃºmero de caracterÃ­sticas
+_n_ - número de características
 
->Cuando usamos el tÃ©rmino "lote" para el descenso de gradiente, significa que cada paso del descenso de gradiente usa **todos** los ejemplos de entrenamiento (como se puede ver en la fÃ³rmula anterior).
+> Cuando usamos el término "lote" para el descenso de gradiente, significa que cada paso del descenso de gradiente usa **todos** los ejemplos de entrenamiento (como se puede ver en la fórmula anterior).
 
-## CaracterÃ­stica de escalado
+## Clasificación Multi-clase (Uno-contra-Todos)
 
-Para que la regresiÃ³n lineal y el algoritmo de descenso de gradiente funcionen correctamente, debemos asegurarnos de que las caracterÃ­sticas estÃ©n en una escala similar.
+Muy a menudo tenemos que hacer no solo la clasificación binaria (0/1), sino más bien las clases múltiples, como:
 
-![Feature Scaling](./formulas/feature-scaling.svg)
+- Clima: Soleado, Nublado, Lluvia, Nieve.
+- Etiquetado de correo electrónico: Trabajo, Amigos, Familia
 
-Por ejemplo, la caracterÃ­stica "tamaÃ±o del apartamento" (por ejemplo, 120 m<sup>2</sup>) es mucho mÃ¡s grande que la caracterÃ­stica "nÃºmero de habitaciones" (por ejemplo, 2).
+Para manejar este tipo de problemas, podemos entrenar un clasificador de regresión logística ![Multi-class classifier](./formulas/multi-class-classifier.svg) varias veces para cada clase _i_ para predecir la probabilidad de que _y = i_.
 
-Para escalar las caracterÃ­sticas necesitamos hacer la **normalizaciÃ³n media**.
+![One-vs-All](https://i.stack.imgur.com/zKpJy.jpg)
 
-![Mean Normalization](./formulas/mean-normalization.svg)
-
-![x-i-j](./formulas/x-i-j.svg) - _j<sup>Ã©simo</sup>_ valor de la caracterÃ­stica del _i<sup>Ã©simo</sup>_ ejemplo de entrenamiento
-
-![mu-j](./formulas/mu-j.svg) - valor promedio de _j<sup>Ã©sima</sup>_ caracterÃ­stica en el conjunto de entrenamiento
-
-![s-j](./formulas/s-j.svg) - El rango (_mÃ¡ximo - mÃ­nimo_) de la _j<sup>Ã©sima</sup>_ caracterÃ­stica en el conjunto de entrenamiento.
-
-## RegresiÃ³n polinomial
-
-RegresiÃ³n polinÃ³mica es una forma de anÃ¡lisis de regresiÃ³n en el que la relaciÃ³n entre la variable independiente _x_ y la variable dependiente _y_ se modela como un _n<sup>th</sup>_ polinomio grado en _x_.
-
-Si bien la regresiÃ³n polinÃ³mica ajusta un modelo no lineal a los datos, como un problema de estimaciÃ³n estadÃ­stica es lineal, en el sentido de que la funciÃ³n de hipÃ³tesis es lineal en los parÃ¡metros desconocidos que se estiman a partir de los datos. Por esta razÃ³n, la regresiÃ³n polinomial se considera un caso especial de regresiÃ³n lineal mÃºltiple.
-
-![Polynomial Regression](https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Polyreg_scheffe.svg/650px-Polyreg_scheffe.svg.png)
-
-Ejemplo de una regresiÃ³n polinomial cÃºbica, que es un tipo de regresiÃ³n lineal.
-
-Puede formar una regresiÃ³n polinomial agregando nuevas caracterÃ­sticas polinomiales.
-
-Por ejemplo, si el precio del apartamento es una dependencia no lineal de su tamaÃ±o, entonces puede agregar varias caracterÃ­sticas nuevas relacionadas con el tamaÃ±o.
-
-![Polynomial Regression](./formulas/polynomial-regression.svg)
-
-## EcuaciÃ³n normal
-
-Existe una soluciÃ³n de forma cerrada para la regresiÃ³n lineal y se parece a lo siguiente:
-
-![Normal Equation](./formulas/normal-equation.svg)
-
-El uso de esta fÃ³rmula no requiere ninguna funciÃ³n de escalado, y obtendrÃ¡ una soluciÃ³n exacta en un cÃ¡lculo: no hay "bucle hasta la convergencia" como en el descenso de gradiente.
-
-## RegularizaciÃ³n
+## Regularización
 
 ### Problema de sobreajuste
 
-Si tenemos demasiadas caracterÃ­sticas, la hipÃ³tesis aprendida puede encajar muy bien con el conjunto de **entrenamiento**:
+Si tenemos demasiadas características, la hipótesis aprendida puede encajar muy bien con el conjunto de **entrenamiento**:
 
 ![overfitting](./formulas/overfitting-1.svg)
 
-**Pero** puede fallar en generalizar a **nuevos** ejemplos (digamos, predecir los precios en un nuevo ejemplo de detecciÃ³n si los nuevos mensajes son spam).
+**Pero** puede fallar en generalizar a **nuevos** ejemplos (digamos, predecir los precios en un nuevo ejemplo de detección si los nuevos mensajes son spam).
 
-![overfitting](https://cdncontribute.geeksforgeeks.org/wp-content/uploads/t0zit.png)
+![overfitting](https://cdncontribute.geeksforgeeks.org/wp-content/uploads/fittings.jpg)
 
-### SoluciÃ³n a sobreajuste
+### Solución a sobreajuste
 
-AquÃ­ hay un par de opciones que pueden abordarse:
+Aquí hay un par de opciones que pueden abordarse:
 
-- Reducir el nÃºmero de caracterÃ­sticas
-    - Seleccionar manualmente quÃ© caracterÃ­sticas mantener
-    - Algoritmo de selecciÃ³n de modelo
-- RegularizaciÃ³n
-    - Mantenga todas las caracterÃ­sticas, pero reduzca la magnitud / valores de los parÃ¡metros del modelo (thetas).
-    - Funciona bien cuando tenemos muchas caracterÃ­sticas, cada una de las cuales contribuye un poco a la predicciÃ³n de _y_.
+- Reducir el número de características
+    - Seleccionar manualmente qué características mantener
+    - Algoritmo de selección de modelo
+- Regularización
+    - Mantenga todas las características, pero reduzca la magnitud / valores de los parámetros del modelo (thetas).
+    - Funciona bien cuando tenemos muchas características, cada una de las cuales contribuye un poco a la predicción de _y_.
 
-La regularizaciÃ³n funciona agregando un parÃ¡metro de regularizaciÃ³n a la **funciÃ³n de costo**:
+La regularización funciona agregando un parámetro de regularización a la **función de costo**:
 
 ![Cost Function](./formulas/cost-function-with-regularization.svg)
 
-> Tenga en cuenta que no debe regularizar el parÃ¡metro ![theta zero](./formulas/theta-0.svg).
+![regularization parameter](./formulas/lambda.svg) - parámetro de regularización
 
-![regularization parameter](./formulas/lambda.svg) - parÃ¡metro de regularizaciÃ³n
+> Tenga en cuenta que no debe regularizar el parámetro ![theta zero](./formulas/theta-0.svg).
 
-En este caso, la fÃ³rmula de **descenso de gradiente** tendrÃ¡ el siguiente aspecto:
+En este caso, la fórmula de **descenso de gradiente** tendrá el siguiente aspecto:
 
 ![Gradient Descent](./formulas/gradient-descent-3.svg)
 
 ## Archivos
 
-- [demo.m](./demo.m) - secuencia de comandos de demostraciÃ³n de regresiÃ³n lineal que carga datos de prueba y grafica predicciones de regresiÃ³n lineal en modo consola.
-- [linear_regression_train.m](./linear_regression_train.m) - algoritmo de regresiÃ³n lineal.
-- [hypothesis.m](./hypothesis.m) - funciÃ³n de hipÃ³tesis de regresiÃ³n lineal.
-- [cost_function.m](./cost_function.m) - funciÃ³n de costo de regresiÃ³n lineal.
-- [feature_normalize.m](./feature_normalize.m) - funciÃ³n que normaliza las caracterÃ­sticas.
-- [gradient_descent.m](./gradient_descent.m) - funciÃ³n que realiza el descenso de gradiente.
-- [gradient_step.m](./gradient_step.m) - funciÃ³n que realiza solo un paso de descenso de gradiente.
-- [house_prices.csv](./house_prices.csv) - conjunto de datos de capacitaciÃ³n de los precios de la vivienda (segÃºn el nÃºmero de habitaciones y el tamaÃ±o de la casa).
-- [normal_equation.m](./normal_equation.m) - funciÃ³n que realiza el cÃ¡lculo alternativo de los parÃ¡metros del modelo usando la ecuaciÃ³n normal (evitando el descenso del gradiente).
-- [linearregression.m](./linearregression.m) - archivo principal que debe ejecutar desde Octave/MatLab para usar el algoritmo desde el entorno grafico.
-- [linearregression.fig](./linearregression.fig) - archivo que almacena los grÃ¡ficos, que se utilizan para visualizar los datos.
-- [printLR.m](./printLR.m) - archivo que contiene el formato de los resultados que imprime en los archivos .doc y .pdf.
+- [demo.m](./demo.m) - secuencia de comandos de regresión logística que carga datos de prueba y grafica predicciones de decisión en consola.
+- [logistic_regression_train.m](./logistic_regression_train.m) - algoritmo de regresión logística.
+- [hypothesis.m](./hypothesis.m) - función de hipótesis de regresión logística.
+- [cost_function.m](./cost_function.m) - función de costo de regresión logística.
+- [gradient_descent.m](./gradient_descent.m) - función que realiza el descenso de gradiente.
+- [gradient_step.m](./gradient_step.m) - función que realiza solo un paso de descenso de gradiente.
+- [gradient_callback.m](./gradient_callback.m) - función que agrega valores de función de costo y paso de gradiente para `fminunc`.
+- [microchips_tests.csv](./microchips_tests.csv) - conjunto de datos de entrenamiento de parámetros de microchip y su validez.
+- [digits.mat](./digits.mat) - conjunto de entrenamiento de dígitos etiquetados a mano.
+- [add_polynomial_features.m](./add_polynomial_features.m) - función que genera nuevas características polinomiales para el conjunto de entrenamiento para que los límites de decisión tengan una forma compleja.
+- [one_vs_all.m](./one_vs_all.m) - entrena 10 modelos de regresión logística, cada uno de los cuales reconoce un número específico que comienza de 0 a 9.
+- [one_vs_all_predict.m](./one_vs_all_predict.m) - predice qué se escribe el dígito según el método de regresión logística de uno contra todo.
+- [fmincg.m](./fmincg.m) - función que realiza una pendiente de gradiente como una alternativa a `fminunc()`.
+- [display_data.m](./display_data.m) - función que muestra los dígitos escritos a mano del conjunto de entrenamiento.
+- [sigmoid.m](./sigmoid.m) - función sigmoidea.
+- [seleccionalgoritmo.m](./seleccionalgoritmo.m) - archivo principal que debe ejecutar desde Octave/MatLab para decidir que aplicación del algoritmo desea utilizar desde el entorno grafico 
+- [seleccionalgoritmo.fig](./seleccionalgoritmo.fig) - archivo que almacena los gráficos de configuración de la ventana 
+- [printLR1.m](./printLR1.m) - archivo que contiene el formato de los resultados que imprime en los archivos .doc y .pdf.
+- [regresionlogistica.m](./regresionlogistica.m) - archivo principal que debe ejecutar desde Octave/MatLab para usar el algoritmo desde el entorno grafico.
+- [regresionlogistica.fig](./regresionlogistica.fig) - archivo que almacena los gráficos, que se utilizan para visualizar los datos.
+- [regresionlogistica2.m](./regresionlogistica.m) - archivo principal que debe ejecutar desde Octave/MatLab para usar el algoritmo desde el entorno grafico.
+- [regresionlogistica2.fig](./regresionlogistica.fig) - archivo que almacena los gráficos, que se utilizan para visualizar los datos.
 
 
-### Visualizaciones de demostraciÃ³n
+
+### Visualizaciones de demostración
 
 ![Demo visualization](./formulas/demo.png)
 
 ## References
 
 - [Machine Learning en Coursera](https://www.coursera.org/learn/machine-learning)
-- [RegresiÃ³n lineal en Wikipedia](https://es.wikipedia.org/wiki/Regresi%C3%B3n_lineal)
+- [Función sigmoide en Wikipedia](https://es.wikipedia.org/wiki/Función_sigmoide)
 - [Pendiente de descenso en Wikipedia (en ingles)](https://en.wikipedia.org/wiki/Gradient_descent)
 - [Pendiente de descenso por Suryansh S. (en ingles)](https://hackernoon.com/gradient-descent-aynk-7cbe95a778da)
-- [Sobreajuste en GeeksForGeeks (en ingles)](https://www.geeksforgeeks.org/underfitting-and-overfitting-in-machine-learning/)
+- [Uno contra Todos en Stackexchange (en ingles)](https://stats.stackexchange.com/questions/318520/many-binary-classifiers-vs-single-multiclass-classifier)
+- [Regresión logística por Rohan Kapur (en ingles)](https://ayearofai.com/rohan-1-when-would-i-even-use-a-quadratic-equation-in-the-real-world-13f379edab3b)
+- [Sobreajuste on GeeksForGeeks (en ingles)](https://www.geeksforgeeks.org/underfitting-and-overfitting-in-machine-learning/)
