@@ -190,8 +190,6 @@ Necesitamos establecer:
 
 ## Inicialización Aleatoria
 
-Before starting forward propagation we need to initialize Theta parameters. We can not assign zero to all thetas since this would make our network useless because every neuron of the layer will learn the same as its siblings. In other word we need to **break the symmetry**. In order to do so we need to initialize thetas to some small random initial values:
-
 Antes de comenzar la propagación hacia adelante, necesitamos inicializar los parámetros de Theta. No podemos asignar cero a todos los thetas, ya que esto haría que nuestra red fuera inútil porque cada neurona de la capa aprenderá lo mismo que sus hermanos. En otras palabras, tenemos que **romper la simetría**. Para hacerlo necesitamos inicializar thetas a algunos valores iniciales aleatorios pequeños:
 
 ![theta-init](./formulas/theta-init.svg)
