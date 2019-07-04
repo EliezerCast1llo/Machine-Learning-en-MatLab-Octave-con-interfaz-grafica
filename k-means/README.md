@@ -14,8 +14,6 @@ Dado un conjunto de observaciones formativas:
 
 ![x-i](./formulas/x-i.svg)
 
-Where each observation is a _d_-dimensional real vector, k-means clustering aims to partition the _m_ observations into _K_ (_≤ m_) clusters:
-
 Donde cada observación es un vector real _d_- dimensional, el agrupamiento de k-means tiene como objetivo dividir las _m_ observaciones en _K_ ( _≤ m_ ) agrupamientos:
 
 ![Clusters](./formulas/clasters.svg)
