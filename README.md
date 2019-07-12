@@ -1,5 +1,4 @@
-﻿#  This an merge conflict by Tavo Merge Conflict
-# Machine Learning en MatLab/Octave con interfaz grafica
+﻿# Machine Learning en MatLab/Octave con interfaz grafica
 
 > _Para la version original de Python/Jupyter puedes visitar el siguiente enlace [homemade-machine-learning](https://github.com/trekhleb/homemade-machine-learning)._
 
